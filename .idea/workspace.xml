@@ -2,22 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="46dc45d1-294f-47f3-b9b0-ed1d87cbfa36" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/migrations/versions/55e2c2f84cc8_.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.db" beforeDir="false" afterPath="$PROJECT_DIR$/app.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/add_integration.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/add_integration.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/versions/5056cf879a3e_fixed_relationship_between_integration_.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/versions/8d35b7d2013d_initial_migration.py" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/versions/439a0805fc3c_initial_migration.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/geckodriver.log" beforeDir="false" afterPath="$PROJECT_DIR$/geckodriver.log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="demo_traffic" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -45,11 +43,56 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="GitIgnore" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/venv/bin/flask" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <module name="demo_traffic" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$PROJECT_DIR$/venv/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/demo_traffic.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="flask" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="demo_traffic" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$PROJECT_DIR$/venv/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/venv/bin" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/venv/bin/flask" />
+      <option name="PARAMETERS" value="run" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
   </component>
   <component name="ServiceViewManager">
     <option name="viewStates">
@@ -80,10 +123,46 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="2338" y="190" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1578528941623">
+    <state x="2338" y="190" width="1084" height="718" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1578584952492">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2338" y="190" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.0.1920.1080/0.25.1920.1007@1920.0.1920.1080" timestamp="1578528941623" />
+    <state x="2338" y="190" width="1084" height="718" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.0.1920.1080/0.25.1920.1007@1920.0.1920.1080" timestamp="1578584952492" />
+    <state x="2196" y="161" width="424" height="490" key="FileChooserDialogImpl" timestamp="1578584945717">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2196" y="161" width="424" height="490" key="FileChooserDialogImpl/1920.0.1920.1080/0.25.1920.1007@1920.0.1920.1080" timestamp="1578584945717" />
+    <state width="1897" height="261" key="GridCell.Tab.0.bottom" timestamp="1578585427546">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1897" height="261" key="GridCell.Tab.0.bottom/1920.0.1920.1080/0.25.1920.1007@1920.0.1920.1080" timestamp="1578585427546" />
+    <state width="1897" height="261" key="GridCell.Tab.0.center" timestamp="1578585427545">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1897" height="261" key="GridCell.Tab.0.center/1920.0.1920.1080/0.25.1920.1007@1920.0.1920.1080" timestamp="1578585427545" />
+    <state width="1897" height="261" key="GridCell.Tab.0.left" timestamp="1578585427545">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1897" height="261" key="GridCell.Tab.0.left/1920.0.1920.1080/0.25.1920.1007@1920.0.1920.1080" timestamp="1578585427545" />
+    <state width="1897" height="261" key="GridCell.Tab.0.right" timestamp="1578585427545">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1897" height="261" key="GridCell.Tab.0.right/1920.0.1920.1080/0.25.1920.1007@1920.0.1920.1080" timestamp="1578585427545" />
+    <state width="1897" height="322" key="GridCell.Tab.1.bottom" timestamp="1578585175609">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1897" height="322" key="GridCell.Tab.1.bottom/1920.0.1920.1080/0.25.1920.1007@1920.0.1920.1080" timestamp="1578585175609" />
+    <state width="1897" height="322" key="GridCell.Tab.1.center" timestamp="1578585175609">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1897" height="322" key="GridCell.Tab.1.center/1920.0.1920.1080/0.25.1920.1007@1920.0.1920.1080" timestamp="1578585175609" />
+    <state width="1897" height="322" key="GridCell.Tab.1.left" timestamp="1578585175609">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1897" height="322" key="GridCell.Tab.1.left/1920.0.1920.1080/0.25.1920.1007@1920.0.1920.1080" timestamp="1578585175609" />
+    <state width="1897" height="322" key="GridCell.Tab.1.right" timestamp="1578585175609">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1897" height="322" key="GridCell.Tab.1.right/1920.0.1920.1080/0.25.1920.1007@1920.0.1920.1080" timestamp="1578585175609" />
     <state x="2533" y="146" width="683" height="770" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1578577286337">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>

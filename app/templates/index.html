@@ -8,11 +8,11 @@
     </div>
   </div>
 
-{%if urls%}
-    {%for url in urls%}
-        <a href={{url}}>{{url}}</a>
+{%if window_urls %}
+    {%for url in window_urls %}
+        <p>{{url}}</p>
+        <script>window.open("{{ url }}")</script>
     {% endfor %}
 {% endif%}
-
 
 {% endblock %}

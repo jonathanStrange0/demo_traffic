@@ -26,6 +26,6 @@ class AddPlatformUrlForm(FlaskForm):
                                              get_label='platform',
                                              validators=[DataRequired()])
     url_field = StringField(_name='Add URL', validators=[DataRequired()])
-    num_headless = IntegerField("Number of headless browsers to open")
-    num_plain = IntegerField("Number of standard browser windows to open")
+    num_headless = IntegerField("Number of headless browsers to open", )
+    num_plain = IntegerField("Number of standard browser windows to open", )
     submit_button = SubmitField(label='Save New URL To Platform')
