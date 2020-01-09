@@ -1,7 +1,7 @@
 from app import app, nav
 from flask import render_template
 from flask_nav.elements import Navbar, View
-from app.forms import RunTrafficForm
+from app.forms import RunTrafficForm, AddPlatformUrlForm, AddPlatformForm
 
 nav.register_element('demo_traffic', Navbar(
     View('Home', '.index'),
@@ -19,6 +19,9 @@ def index():
 
 @app.route('/add_integration')
 def add_integration():
-    
-    return render_template('add_integration.html')
+    platform_form = AddPlatformForm()
+    url_form = AddPlatformUrlForm()
+
+
+    return render_template('add_integration.html', platform_form=platform_form, url_form = url_form)
 

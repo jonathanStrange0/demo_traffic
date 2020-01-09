@@ -2,21 +2,16 @@
 {% import 'bootstrap/wtf.html' as wtf %}
 
 {% block app_content %}
+  <div class="row">
+    <div class="col-md-6">
+        {{ wtf.quick_form(platform_form, form_type="row", button_map={'submit_button':'primary'}) }}
+    </div>
+    <div class="col-md-6">
+        {{ wtf.quick_form(url_form, form_type="row", button_map={'submit_button':'primary'}) }}
+    </div>
+  </div>
 
 
-<form method="POST">
-     <div id="dynamicInput">
-          Entry 1<br>
-         <input type="text" name="myInputs[]">
-<!--         <div class="btn-group-toggle" data-toggle="buttons">-->
-            <label >
-                <input type="checkbox" headleass>Run as Headless Browser
-            </label>
-<!--         </div>-->
-<!--         <input type="checkbox" name="Show Browser?">-->
-     </div>
-    <input type="button" value="Add another text input" onClick="addInput('dynamicInput');">
-</form>
 
 
 
