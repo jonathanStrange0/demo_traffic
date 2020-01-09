@@ -1,7 +1,8 @@
-from app import app, nav
-from flask import render_template
+from app import app, nav, db
+from flask import render_template, request, redirect, url_for
 from flask_nav.elements import Navbar, View
 from app.forms import RunTrafficForm, AddPlatformUrlForm, AddPlatformForm
+from app.models import IntegrationPlatform, Url
 
 nav.register_element('demo_traffic', Navbar(
     View('Home', '.index'),
@@ -11,17 +12,44 @@ nav.register_element('demo_traffic', Navbar(
 ))
 
 
-@app.route('/')
-@app.route('/index')
+@app.route('/', methods=['GET', 'POST'])
+@app.route('/index', methods=['GET', 'POST'])
 def index():
     form = RunTrafficForm()
+    if request.method == "POST" and form.validate_on_submit():
+        platform = form.platform_select_field.data
+        urls = []
+        for url in platform.urls:
+            urls.append(url.address)
+        return render_template('index.html', form=form, urls=urls)
+
+
+
     return render_template('index.html', form=form)
 
-@app.route('/add_integration')
+@app.route('/add_integration', methods=['GET', 'POST'])
 def add_integration():
     platform_form = AddPlatformForm()
     url_form = AddPlatformUrlForm()
-
+    if request.method == 'POST' and platform_form.validate_on_submit():
+        platform_name = platform_form.platform_name.data
+        # print(platform_name)
+        if len(IntegrationPlatform.query.filter_by(platform=platform_name).all()) == 0:
+            new_platform = IntegrationPlatform(platform = platform_name)
+            db.session.add(new_platform)
+            db.session.commit()
+        return(redirect(url_for('add_integration')))
+    elif request.method == 'POST' and url_form.validate_on_submit():
+        url = url_form.url_field.data
+        num_headless = url_form.num_headless.data
+        num_windows = url_form.num_plain.data
+        platform = url_form.platform_select_field.data
+        if len(Url.query.filter_by(address=url).all()) == 0:
+            new_url = Url(address = url, num_headless=num_headless, num_windows=num_windows)
+            db.session.add(new_url)
+            platform.urls.append(new_url)
+            db.session.commit()
+        return (redirect(url_for('add_integration')))
 
     return render_template('add_integration.html', platform_form=platform_form, url_form = url_form)
 

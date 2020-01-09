@@ -10,4 +10,6 @@ class IntegrationPlatform(db.Model):
 class Url(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     address = db.Column(db.String(128), index=True, unique=True)
+    num_headless = db.Column(db.Integer)
+    num_windows = db.Column(db.Integer)
     platform_id = db.Column(db.Integer, db.ForeignKey('integration_platform.id'))
