@@ -4,12 +4,12 @@ from flask_nav.elements import Navbar, View
 from app.forms import RunTrafficForm, AddPlatformUrlForm, AddPlatformForm
 from app.models import IntegrationPlatform, Url
 from app.browser_bot import BrowserBot
-import sys
+import sys, gc
 
 nav.register_element('demo_traffic', Navbar(
     View('Home', '.index'),
     View('Add Integration Partner', '.add_integration'),
-    View('Edit Integration Partner', '.index'),
+    View('Edit Integration Partner', '.edit_integration'),
 
 ))
 
@@ -73,9 +73,14 @@ def add_integration():
     return render_template('add_integration.html', platform_form=platform_form, url_form=url_form)
 
 
-# @app.route('/_free_mem')
-# def _free_mem():
-#     print(sys.getsizeof(session['bb_list']) / 1024.0)
-#     bb_session['bb_list'] = []
-#     print(sys.getsizeof(session['bb_list']) / 1024.0)
-#     return redirect(url_for('index'))
+@app.route('/edit_integration', methods=['GET', 'POST'])
+def edit_integration():
+    return('<h1>Something Wicked This Way Comes</h1>')
+
+
+@app.route('/_free_mem')
+def _free_mem():
+    print(sys.getsizeof(session['bb_list']) / 1024.0)
+    bb_session['bb_list'] = []
+    print(sys.getsizeof(session['bb_list']) / 1024.0)
+    return redirect(url_for('index'))

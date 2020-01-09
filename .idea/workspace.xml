@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="46dc45d1-294f-47f3-b9b0-ed1d87cbfa36" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.db" beforeDir="false" afterPath="$PROJECT_DIR$/app.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/geckodriver.log" beforeDir="false" afterPath="$PROJECT_DIR$/geckodriver.log" afterDir="false" />
     </list>
@@ -160,10 +161,10 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state width="1897" height="322" key="GridCell.Tab.1.right/1920.0.1920.1080/0.25.1920.1007@1920.0.1920.1080" timestamp="1578586275748" />
-    <state x="2536" y="356" key="com.intellij.ide.util.TipDialog" timestamp="1578586307468">
+    <state x="2536" y="362" key="com.intellij.ide.util.TipDialog" timestamp="1578594088024">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2536" y="356" key="com.intellij.ide.util.TipDialog/1920.0.1920.1080/0.25.1920.1007@1920.0.1920.1080" timestamp="1578586307468" />
+    <state x="2536" y="362" key="com.intellij.ide.util.TipDialog/1920.0.1920.1080/0.25.1920.1007@1920.0.1920.1080" timestamp="1578594088024" />
     <state x="2533" y="146" width="683" height="770" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1578577286337">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
