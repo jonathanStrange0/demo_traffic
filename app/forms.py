@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, SelectField, IntegerField
+from wtforms import StringField, SubmitField, SelectField, IntegerField, PasswordField
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
 from wtforms.validators import DataRequired
 from app import db
@@ -29,3 +29,18 @@ class AddPlatformUrlForm(FlaskForm):
     num_headless = IntegerField("Number of headless browsers to open", )
     num_plain = IntegerField("Number of standard browser windows to open", )
     submit_button = SubmitField(label='Save New URL To Platform')
+
+
+class EditIntegrationForm(FlaskForm):
+    platform_select_field = QuerySelectField(query_factory=lambda: IntegrationPlatform.query.order_by('platform'),
+                                             allow_blank=False,
+                                             get_label='platform',
+                                             validators=[DataRequired()])
+    submit_button = SubmitField(label='Edit this parner')
+
+
+class LoginForm(FlaskForm):
+    user_name = StringField(_name='Username', validators=[DataRequired()])
+    password = PasswordField(_name='Password', validators=[DataRequired()])
+    # remeber_me
+    submit_button = SubmitField(label='Login')

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
+  <div class="row">
+    <div class="col-md-6">
+        <h1>Edit A Platform Partner Here</h1>
+        {{ wtf.quick_form(form, form_type="row", button_map={'submit_button':'primary'}) }}
+    </div>
+
+  </div>
+  {% if sites_list %}
+  <div class="row">
+    <div class="col-md-6">
+        <h1>Sites List</h1>
+        <table>
+        {% for site in sites_list %}
+          <tr>
+            <td>
+              {{site.address}}
+            </td>
+            <td>{{site.num_headless}}</td>
+            <td>{{site.num_windows}}</td>
+          </tr>
+        {% endfor %}
+        </table>
+    </div>
+  </div>
+  {% endif %}
+
+
+
+
+
+
+{% endblock %}

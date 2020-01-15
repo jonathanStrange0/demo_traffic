@@ -1,21 +1,24 @@
 from app import app, nav, db
 from flask import render_template, request, redirect, url_for, session
 from flask_nav.elements import Navbar, View
-from app.forms import RunTrafficForm, AddPlatformUrlForm, AddPlatformForm
-from app.models import IntegrationPlatform, Url
+from app.forms import RunTrafficForm, AddPlatformUrlForm, AddPlatformForm, EditIntegrationForm
+from app.models import IntegrationPlatform, Url, User
 from app.browser_bot import BrowserBot
 import sys, gc
+from flask_login import current_user, login_user, logout_user
+
 
 nav.register_element('demo_traffic', Navbar(
     View('Home', '.index'),
     View('Add Integration Partner', '.add_integration'),
     View('Edit Integration Partner', '.edit_integration'),
+    # View('Login', '.login'),
 
 ))
 
 
 
-
+# @login_required
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
 def index():
@@ -75,7 +78,12 @@ def add_integration():
 
 @app.route('/edit_integration', methods=['GET', 'POST'])
 def edit_integration():
-    return('<h1>Something Wicked This Way Comes</h1>')
+    form = EditIntegrationForm()
+
+    if request.method == 'POST' and form.validate_on_submit():
+        sites_list = form.platform_select_field.data.urls
+        return render_template('edit_integrations.html', form=form, sites_list=sites_list)
+    return render_template('edit_integrations.html', form=form)
 
 
 @app.route('/_free_mem')
@@ -84,3 +92,22 @@ def _free_mem():
     bb_session['bb_list'] = []
     print(sys.getsizeof(session['bb_list']) / 1024.0)
     return redirect(url_for('index'))
+#
+# @app.route('/login', methods=['GET', 'POST'])
+# def login():
+#     if current_user.is_authenticated:
+#         return redirect(url_for('index'))
+#     form = LoginForm()
+#     if form.validate_on_submit():
+#         user = User.query.filter_by(user_name = form.user_name.data).first()
+#         if user is None or Not user.check_password(form.password.data):
+#             flash('Invalid username or password')
+#             return redirect(url_for('login'))
+#         login_user(user, remember=True)#form.remeber_me.data)
+#         return redirect(url_for('index'))
+#     return render_template('login.html', title='Sign In', form=form)
+#
+# @app.route('/logout')
+# def logout():
+#     logout_user()
+#     return redirect(url_for('index'))
