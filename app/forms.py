@@ -42,5 +42,5 @@ class EditIntegrationForm(FlaskForm):
 class LoginForm(FlaskForm):
     user_name = StringField(_name='Username', validators=[DataRequired()])
     password = PasswordField(_name='Password', validators=[DataRequired()])
-    remeber_me = BooleanField('Remember Me')
+    remember_me = BooleanField('Remember Me')
     submit_button = SubmitField(label='Login')
