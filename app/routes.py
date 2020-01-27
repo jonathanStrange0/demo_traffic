@@ -1,26 +1,27 @@
 from app import app, nav, db
 from flask import render_template, request, redirect, url_for, session
 from flask_nav.elements import Navbar, View
-from app.forms import RunTrafficForm, AddPlatformUrlForm, AddPlatformForm, EditIntegrationForm
+from app.forms import RunTrafficForm, AddPlatformUrlForm, AddPlatformForm, EditIntegrationForm, LoginForm
 from app.models import IntegrationPlatform, Url, User
 from app.browser_bot import BrowserBot
 import sys, gc
-from flask_login import current_user, login_user, logout_user
-
+from flask_login import current_user, login_user, logout_user, login_required
+from werkzeug.urls import url_parse
 
 nav.register_element('demo_traffic', Navbar(
     View('Home', '.index'),
     View('Add Integration Partner', '.add_integration'),
     View('Edit Integration Partner', '.edit_integration'),
-    # View('Login', '.login'),
+    View('Login', '.login'),
 
 ))
 
 
 
-# @login_required
+
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
+@login_required
 def index():
     bb_list = []
     print(sys.getsizeof(bb_list) / 1024.0)
@@ -44,6 +45,7 @@ def index():
 
 
 @app.route('/add_integration', methods=['GET', 'POST'])
+@login_required
 def add_integration():
     platform_form = AddPlatformForm()
     url_form = AddPlatformUrlForm()
@@ -77,6 +79,7 @@ def add_integration():
 
 
 @app.route('/edit_integration', methods=['GET', 'POST'])
+@login_required
 def edit_integration():
     form = EditIntegrationForm()
 
@@ -92,22 +95,26 @@ def _free_mem():
     bb_session['bb_list'] = []
     print(sys.getsizeof(session['bb_list']) / 1024.0)
     return redirect(url_for('index'))
-#
-# @app.route('/login', methods=['GET', 'POST'])
-# def login():
-#     if current_user.is_authenticated:
-#         return redirect(url_for('index'))
-#     form = LoginForm()
-#     if form.validate_on_submit():
-#         user = User.query.filter_by(user_name = form.user_name.data).first()
-#         if user is None or Not user.check_password(form.password.data):
-#             flash('Invalid username or password')
-#             return redirect(url_for('login'))
-#         login_user(user, remember=True)#form.remeber_me.data)
-#         return redirect(url_for('index'))
-#     return render_template('login.html', title='Sign In', form=form)
-#
-# @app.route('/logout')
-# def logout():
-#     logout_user()
-#     return redirect(url_for('index'))
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+    form = LoginForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(user_name = form.user_name.data).first()
+        if user is None or not user.check_password(form.password.data):
+            flash('Invalid username or password')
+            return redirect(url_for('login'))
+        login_user(user, remember=form.rember_me.data)#form.remeber_me.data)
+        next_page = request.args.get('next')
+        if not next_page or url_parse(next_page).netlock != '':
+            next_page = url_for('index')
+        return redirect(next_page)
+    return render_template('login.html', title='Sign In', form=form)
+
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('index'))

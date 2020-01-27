@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, SelectField, IntegerField, PasswordField
+from wtforms import StringField, SubmitField, SelectField, IntegerField, PasswordField, BooleanField
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
 from wtforms.validators import DataRequired
 from app import db
@@ -42,5 +42,5 @@ class EditIntegrationForm(FlaskForm):
 class LoginForm(FlaskForm):
     user_name = StringField(_name='Username', validators=[DataRequired()])
     password = PasswordField(_name='Password', validators=[DataRequired()])
-    # remeber_me
+    remeber_me = BooleanField('Remember Me')
     submit_button = SubmitField(label='Login')

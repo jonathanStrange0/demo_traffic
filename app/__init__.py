@@ -17,7 +17,7 @@ bootstrap = Bootstrap(app)
 nav = Nav()
 
 nav.init_app(app)
-# login = LoginManager(app)
-# login.login_view = 'login'
+login = LoginManager(app)
+login.login_view = 'login'
 
 from app import routes, models

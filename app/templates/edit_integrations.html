@@ -13,24 +13,28 @@
   <div class="row">
     <div class="col-md-6">
         <h1>Sites List</h1>
-        <table>
-        {% for site in sites_list %}
-          <tr>
-            <td>
-              {{site.address}}
-            </td>
-            <td>{{site.num_headless}}</td>
-            <td>{{site.num_windows}}</td>
-          </tr>
-        {% endfor %}
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Address</th>
+              <th scope="col">Headless Windows</th>
+              <th scope="col">Visable Windows</th>
+              <th scope="col">Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+          {% for site in sites_list %}
+            <tr>
+              <th scope="row">{{site.address}}</th>
+              <td>{{site.num_headless}}</td>
+              <td>{{site.num_windows}}</td>
+              <td><button class="btn btn-danger">Edit</button></td>
+            </tr>
+          {% endfor %}
+        </tbody>
         </table>
     </div>
   </div>
   {% endif %}
-
-
-
-
-
 
 {% endblock %}
