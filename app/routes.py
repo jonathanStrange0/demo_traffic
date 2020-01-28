@@ -139,9 +139,9 @@ def _save_address_changes():
         url = Url.query.filter_by(address=result['disabled-address']).first()
         if url.address != result['address']:
             url.address = result['address']
-        elif url.num_headless != int(result['address']):
-            url.address = int(result['address'])
-        elif url.num_windows != int(result['address']):
-            url.address = int(result['address'])
+        elif url.num_headless != int(result['headless']):
+            url.num_headless = int(result['headless'])
+        elif url.num_windows != int(result['windows']):
+            url.num_windows = int(result['windows'])
         db.session.commit()
     return(redirect(url_for('edit_integration')))
