@@ -130,3 +130,18 @@ def logout():
     logout_user()
     session['logged_in'] = False
     return redirect(url_for('index'))
+
+@app.route('/_save_address_changes', methods=['GET', 'POST'])
+def _save_address_changes():
+    if request.method == "POST":
+        result = request.form
+        # print(result)
+        url = Url.query.filter_by(address=result['disabled-address']).first()
+        if url.address != result['address']:
+            url.address = result['address']
+        elif url.num_headless != int(result['address']):
+            url.address = int(result['address'])
+        elif url.num_windows != int(result['address']):
+            url.address = int(result['address'])
+        db.session.commit()
+    return(redirect(url_for('edit_integration')))
