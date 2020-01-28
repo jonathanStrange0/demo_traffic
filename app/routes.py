@@ -8,12 +8,25 @@ import sys, gc
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
 
-
+# if session['logged_in']:
+#     nav.register_element('demo_traffic', Navbar(
+#         View('Home', '.index'),
+#         View('Add Integration Partner', '.add_integration'),
+#         View('Edit Integration Partner', '.edit_integration'),
+#         View('Logout', '.logout'),
+#         ))
+# else:
+#     nav.register_element('demo_traffic', Navbar(
+#         View('Home', '.index'),
+#         View('Add Integration Partner', '.add_integration'),
+#         View('Edit Integration Partner', '.edit_integration'),
+#         View('Login', '.login'),
+#         ))
 nav.register_element('demo_traffic', Navbar(
-    View('Home', '.index'),
-    View('Add Integration Partner', '.add_integration'),
-    View('Edit Integration Partner', '.edit_integration'),
-    View('Logout', '.logout'),
+        View('Home', '.index'),
+        View('Add Integration Partner', '.add_integration'),
+        View('Edit Integration Partner', '.edit_integration'),
+        View('Logout', '.logout'),
     ))
 
 @app.route('/', methods=['GET', 'POST'])
@@ -105,6 +118,7 @@ def login():
             flash('Invalid username or password')
             return redirect(url_for('login'))
         login_user(user, remember=form.remember_me.data)
+        session['logged_in'] = True
         next_page = request.args.get('next')
         if not next_page or url_parse(next_page).netloc != '':
             next_page = url_for('index')
@@ -114,4 +128,5 @@ def login():
 @app.route('/logout')
 def logout():
     logout_user()
+    session['logged_in'] = False
     return redirect(url_for('index'))

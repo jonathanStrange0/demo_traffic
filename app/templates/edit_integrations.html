@@ -2,6 +2,7 @@
 {% import 'bootstrap/wtf.html' as wtf %}
 
 {% block app_content %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <div class="row">
     <div class="col-md-6">
         <h1>Edit A Platform Partner Here</h1>
@@ -19,17 +20,27 @@
               <th scope="col">Address</th>
               <th scope="col">Headless Windows</th>
               <th scope="col">Visable Windows</th>
-              <th scope="col">Edit</th>
+              <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
+
           {% for site in sites_list %}
+
             <tr>
               <th scope="row">{{site.address}}</th>
               <td>{{site.num_headless}}</td>
               <td>{{site.num_windows}}</td>
-              <td><button class="btn btn-danger">Edit</button></td>
+              <td><button class="btn btn-danger"
+                          id={{sites_list.index(site)}}
+                          data-toggle="modal"
+                          data-target="#editModal"
+                          data-address="{{site.address}}"
+                          data-headless="{{site.num_headless}}"
+                          data-windows="{{site.num_windows}}">
+                                    Edit</button></td>
             </tr>
+
           {% endfor %}
         </tbody>
         </table>
@@ -37,4 +48,45 @@
   </div>
   {% endif %}
 
+  <!-- Modal -->
+  <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="exampleModalLabel">Edit Address Information</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <input type="text" name="address" class="form-control" id="address-input">
+            <input type="text" name="headless" class="form-control" id="headless-input">
+            <input type="text" name="windows" class="form-control" id="windows-input">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script type="text/javascript">
+$(function(){
+  $('#editModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget) // Button that triggered the modal
+    var address = button.data('address') // Extract info from data-* attributes
+    var headless = button.data('headless')
+    var windows = button.data('windows')
+    var modal = $(this)
+    console.log(headless)
+    modal.find('.modal-title').text('Edit Address: ' + address)
+    modal.find('.modal-body #address-input').val(address)
+    modal.find('.modal-body #headless-input').val(headless)
+    modal.find('.modal-body #windows-input').val(windows)
+  });
+});
+</script>
 {% endblock %}
