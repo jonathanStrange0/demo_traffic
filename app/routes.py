@@ -45,7 +45,7 @@ def index():
                 window_urls.append(url.address)
             for num in range(url.num_headless):
                 # headless_urls.append(url.address)
-                bb =BrowserBot(url=url.address)
+                bb = BrowserBot(url=url.address)
                 print(sys.getsizeof(bb) / 1024.0)
                 bb_list.append(bb)
         # print(sys.getsizeof(bb_list) / 1024.0)
