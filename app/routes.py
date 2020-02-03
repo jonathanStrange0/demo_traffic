@@ -1,7 +1,7 @@
 from app import app, nav, db
 from flask import render_template, request, redirect, url_for, session, flash
 from flask_nav.elements import Navbar, View
-from app.forms import RunTrafficForm, AddPlatformUrlForm, AddPlatformForm, EditIntegrationForm, LoginForm
+from app.forms import RunTrafficForm, AddPlatformUrlForm, AddPlatformForm, EditIntegrationForm, LoginForm, CreateUserForm
 from app.models import IntegrationPlatform, Url, User
 from app.browser_bot import BrowserBot
 import sys, gc
@@ -145,3 +145,20 @@ def _save_address_changes():
             url.num_windows = int(result['windows'])
         db.session.commit()
     return(redirect(url_for('edit_integration')))
+
+
+@app.route('/create_user', methods=['GET', 'POST'])
+def create_user():
+    form = CreateUserForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(user_name = form.user_name.data).first()
+        if user:
+            flash('This User Name Already Exists, Please Choose Another')
+        else:
+            user = User(user_name=form.user_name.data)
+            user.set_password(form.password.data)
+            db.session.add(user)
+            db.session.commit()
+            login_user(user, remember=True)
+            return(redirect(url_for('index')))
+    return render_template('create_user.html', form=form)

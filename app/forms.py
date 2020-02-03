@@ -44,3 +44,8 @@ class LoginForm(FlaskForm):
     password = PasswordField(_name='Password', validators=[DataRequired()])
     remember_me = BooleanField('Remember Me')
     submit_button = SubmitField(label='Login')
+
+class CreateUserForm(FlaskForm):
+    user_name = StringField(_name='New Username', validators=[DataRequired()])
+    password = PasswordField(_name='Enter a Password', validators=[DataRequired()])
+    submit_button = SubmitField(label='Create')
