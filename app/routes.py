@@ -1,5 +1,5 @@
 from app import app, nav, db
-from flask import render_template, request, redirect, url_for, session
+from flask import render_template, request, redirect, url_for, session, flash
 from flask_nav.elements import Navbar, View
 from app.forms import RunTrafficForm, AddPlatformUrlForm, AddPlatformForm, EditIntegrationForm, LoginForm
 from app.models import IntegrationPlatform, Url, User
