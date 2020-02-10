@@ -49,6 +49,8 @@ def index():
                 print(sys.getsizeof(bb) / 1024.0)
                 bb_list.append(bb)
         # print(sys.getsizeof(bb_list) / 1024.0)
+        for bb in bb_list:
+            bb.browser.stop_client()
         return render_template('index.html', form=form, window_urls=window_urls)
 
     return render_template('index.html', form=form)

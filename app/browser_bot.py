@@ -6,5 +6,6 @@ class BrowserBot():
         self.url = url
         self.opts = Options()
         self.opts.headless = True
-        self.browser = Firefox(options=self.opts)
+        self.browser = Firefox(keep_alive=False, options=self.opts)
         self.browser.get(self.url)
+        self.browser.close()
