@@ -89,15 +89,15 @@ def create_order():
     browser.find_element_by_xpath('//*[@id="place_order"]').click()
 
 
-def create_magento_order():
+def create_magento_order(headless=False):
 
     # create instance of faker
     fake = Faker()
 
     # get the store up in selenium
-    url = "https://magento-v2-234.ns8demos.com/index.php/"
+    url = "https://magento-demo.ns8demos.com/" #"https://magento-v2-234.ns8demos.com/index.php/"
     opts = Options()
-    # opts.headless = True
+    opts.headless = headless
     browser = Firefox(options=opts)
     browser.get(url)
     time.sleep(2)
@@ -128,20 +128,10 @@ def create_magento_order():
     time.sleep(5)
     browser.find_element_by_xpath(
         '/html/body/div[1]/header/div[2]/div[1]/a').click()
-    # browser.switch_to_alert()
+
+    # Go to checkout
     browser.find_element_by_xpath(
         '//*[@id="top-cart-btn-checkout"]').click()
-
-    # browser.find_element_by_xpath(
-    #     '/html/body/div[1]/header/div[2]/div[1]/div/div/div/div[2]/div[5]/div/a/span').click()
-    # browser.get('https://magento-v2-234.ns8demos.com/index.php/checkout/cart/')#('action.showcart')[0]
-    # print(cart.get_attribute('value'))
-    # cart.click()
-    print(browser.title)
-
-    # Procede to checkout
-    # browser.find_element_by_xpath(
-    #     '/html/body/div[1]/main/div[3]/div/div[2]/div[1]/ul/li[1]/button').click()
 
     # Fill in the checkout form
     # Wait for form to load

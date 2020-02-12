@@ -3463,3 +3463,4 @@ JavaScript error: https://magento-v2-234.ns8demos.com/pub/static/version15814504
 http://requirejs.org/docs/errors.html#scripterror
 JavaScript error: https://magento-v2-234.ns8demos.com/pub/static/version1581450492/frontend/Magento/luma/en_US/requirejs/require.js, line 166: Error: Script error for: MutationObserver
 http://requirejs.org/docs/errors.html#scripterror
+1581529862248	Marionette	INFO	Stopped listening on port 61395
