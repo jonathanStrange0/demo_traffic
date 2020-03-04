@@ -1,5 +1,5 @@
 # create_order.py
-from selenium.webdriver import Firefox
+from selenium.webdriver import Firefox, FirefoxProfile
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.keys import Keys
 from faker import Faker
@@ -7,7 +7,7 @@ import random
 import time
 
 
-def create_order():
+def create_woo_order(headless=False):
 
     # create instance of faker
     fake = Faker()
@@ -15,7 +15,7 @@ def create_order():
     # get the store up in selenium
     url = "http://woocommerce.sales.ns8demos.com"
     opts = Options()
-    opts.headless = True
+    opts.headless = headless
     browser = Firefox(options=opts)
     browser.get(url)
 
@@ -95,10 +95,13 @@ def create_magento_order(headless=False):
     fake = Faker()
 
     # get the store up in selenium
-    url = "https://magento-demo.ns8demos.com/" #"https://magento-v2-234.ns8demos.com/index.php/"
+    url = "https://magento-demo.ns8demos.com" # "https://magento-v2-234.ns8demos.com/index.php/"
     opts = Options()
     opts.headless = headless
-    browser = Firefox(options=opts)
+    profile = FirefoxProfile()
+    profile.set_preference("general.useragent.override", fake.firefox())# 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:73.0) Firefox/73.0')
+    browser = Firefox(options=opts, firefox_profile=profile)
+    print(browser.execute_script("return navigator.userAgent"))
     browser.get(url)
     time.sleep(2)
     # Go to gear site
@@ -107,7 +110,7 @@ def create_magento_order(headless=False):
 
     # Select Bags
     browser.find_element_by_xpath(
-        '/html/body/div[1]/main/div[4]/div[2]/div[1]/div[2]/dl/dd/ol/li[1]/a').click()
+        '/html/body/div[1]/main/div[4]/div[2]/div/div/ul/li[1]/a').click()
 
     # Choose Products
     browser.find_element_by_xpath(
@@ -126,17 +129,25 @@ def create_magento_order(headless=False):
 
     # Go to the cart
     time.sleep(5)
-    browser.find_element_by_xpath(
-        '/html/body/div[1]/header/div[2]/div[1]/a').click()
+    try:
+        browser.find_element_by_xpath(
+            '/html/body/div[1]/header/div[2]/div[1]/a').click()
 
-    # Go to checkout
-    browser.find_element_by_xpath(
-        '//*[@id="top-cart-btn-checkout"]').click()
+        # Go to checkout
+        browser.find_element_by_xpath(
+            '//*[@id="top-cart-btn-checkout"]').click()
+    except:
+        time.sleep(5)
+        browser.find_element_by_xpath(
+            '/html/body/div[1]/header/div[2]/div[1]/a').click()
+
+        # Go to checkout
+        browser.find_element_by_xpath(
+            '//*[@id="top-cart-btn-checkout"]').click()
 
     # Fill in the checkout form
     # Wait for form to load
     time.sleep(10)
-    # first_name = browser.find_element_by_xpath('//*[@id="S336JIB"]')
     first_name = browser.find_element_by_name('firstname')
     first_name.send_keys(fake.first_name())
 
@@ -183,6 +194,29 @@ def create_magento_order(headless=False):
     # Wait a few moments
     time.sleep(10)
 
+    # Choose payment method
+    # browser.find_element_by_xpath('//*[@id="braintree"]').click()
+    try:
+        browser.find_element_by_xpath('//*[@id="checkmo"]').click()
+    # Confirm billing and shipping
+    # browser.find_element_by_xpath('//*[@id="billing-address-same-as-shipping-braintree"]').click()
+        browser.find_element_by_xpath('//*[@id="billing-address-same-as-shipping-checkmo"]').click()
+    # Switch to braintree iframe
+    # browser.switch_to_frame('braintree-hosted-field-number')
+
+    # Fill in card info
+    # card = browser.find_element_by_id('credit-card-number')
+    # card.send_keys('4111111111111111')
+    # exp_mo = browser.find_element_by_id('expirationMonth-target-prev')
+    # exp_mo.send_keys('03')
+    # exp_yr = browser.find_element_by_id('expiration-year')
+    # exp_yr.send_keys('22')
+    # ccv = browser.find_element_by_id('ccv')
+    # ccv.send_keys(fake.credit_card_security_code(card_type='visa'))
+
     # Place the order
-    browser.find_element_by_xpath(
-        '/html/body/div[2]/main/div[2]/div/div[2]/div[4]/ol/li[3]/div/form/fieldset/div[1]/div/div/div[2]/div[2]/div[4]/div/button/span').click()
+        browser.find_element_by_xpath(
+            '/html/body/div[2]/main/div[2]/div/div[2]/div[4]/ol/li[3]/div/form/fieldset/div[1]/div/div/div[3]/div[2]/div[4]/div/button/span').click()
+    except:
+        browser.find_element_by_xpath('//*[@id="billing-address-same-as-shipping-checkmo"]').click()
+        browser.find_element_by_xpath('/html/body/div[2]/main/div[2]/div/div[2]/div[4]/ol/li[3]/div/form/fieldset/div[1]/div/div/div[2]/div[2]/div[4]/div/button/span').click()

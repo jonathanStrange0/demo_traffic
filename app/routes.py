@@ -8,6 +8,8 @@ import sys
 import gc
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
+import requests
+from faker import Faker
 
 # if session['logged_in']:
 #     nav.register_element('demo_traffic', Navbar(
@@ -35,21 +37,20 @@ nav.register_element('demo_traffic', Navbar(
 @app.route('/index', methods=['GET', 'POST'])
 @login_required
 def index():
-    print(sys.getsizeof(bb_list) / 1024.0)
     form = RunTrafficForm()
     if request.method == "POST" and form.validate_on_submit():
         platform = form.platform_select_field.data
         window_urls = []
         headless_urls = []
+        fake = Faker()
+        headers = {'User-Agent': fake.safari(), 'connection': 'keep-alive'}
         for url in platform.urls:
             for num in range(url.num_windows):
                 window_urls.append(url.address)
             for num in range(url.num_headless):
                 # headless_urls.append(url.address)
-                bb = BrowserBot(url=url.address)
-                print(sys.getsizeof(bb) / 1024.0)
-        for bb in bb_list:
-            bb.browser.stop_client()
+                BrowserBot(url=url.address)
+                requests.get(url.address, headers=headers)
         return render_template('index.html', form=form, window_urls=window_urls)
 
     return render_template('index.html', form=form)
